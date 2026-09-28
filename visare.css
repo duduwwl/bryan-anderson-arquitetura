@@ -47,7 +47,7 @@
 .depth-cover{position:relative;overflow:hidden;isolation:isolate;background:#355564}
 .depth-scene{--rx:0deg;--ry:0deg;position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .38s ease;will-change:transform}
 .depth-back,.depth-front,.depth-light{position:absolute;inset:-2%}
-.depth-back{background:url('/bryan-anderson-arquitetura/assets/visualizacao-piscina.webp') center/cover;filter:blur(18px) brightness(.72);transform:translateZ(-55px) scale(1.1)}
+.depth-back{background:url('/bryan-anderson-arquitetura/assets/visualizacao-piscina-refinada.png') center/cover;filter:blur(18px) brightness(.72);transform:translateZ(-55px) scale(1.1)}
 .depth-front{inset:0;transform:translateZ(30px) scale(1.035);animation:depthFloat 13s ease-in-out infinite alternate;box-shadow:0 0 42px #10232e50;overflow:hidden}
 .depth-front .photo{width:100%;height:100%}
 .depth-front .photo>img{object-position:center 51%}
@@ -57,4 +57,11 @@
 
 @media(max-width:750px){.detail-strip{height:auto;min-height:0;display:block;padding:64px var(--pad)}.strip-caption{margin-bottom:36px}.strip-caption>p:not(.eyebrow){font-size:clamp(34px,8vw,48px);letter-spacing:-.8px}.strip-media{width:min(100%,460px);height:auto;margin:auto}.strip-media>.photo{width:100%;height:auto;aspect-ratio:610/875}.depth-cover{height:auto;min-height:0;aspect-ratio:1.18}.depth-scene{height:100%}.depth-front .photo{aspect-ratio:auto}}
 @media(prefers-reduced-motion:reduce){.hero-slide{transition:none}.hero-slide .hero-camera,.detail-strip .strip-media>.photo,.depth-scene,.depth-front,.depth-light{animation:none!important;transform:none!important}.hero-controls{display:flex}}
+
+/* Natural proportions for raster images opened from the portfolio grid. */
+.lightbox-media{overflow:visible;align-items:center}
+.lightbox-media .photo.has-img{display:flex;align-items:center;justify-content:center;width:auto;height:auto;max-width:100%;max-height:none;aspect-ratio:auto;overflow:visible}
+.lightbox-media .photo.has-img img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 155px);object-fit:contain}
+.contact-links span{line-height:1.6}
+@media(max-width:600px){.lightbox-media .photo.has-img img{max-height:calc(100dvh - 180px)}.contact-links{flex-direction:column;align-items:flex-start;gap:8px}}
 
