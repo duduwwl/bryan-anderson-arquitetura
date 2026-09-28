@@ -1,14 +1,13 @@
 const header=document.querySelector('.site-header');
 const menu=document.getElementById('mobile-menu');
-const toggle=document.querySelector('.menu-toggle');
+const toggle=document.querySelector('.nav-trigger');
 const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
 function updateHeader(){header?.classList.toggle('is-scrolled',scrollY>40)}
 addEventListener('scroll',updateHeader,{passive:true});updateHeader();
-function closeMenu(){if(!menu||!toggle)return;menu.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Abrir menu');header.classList.remove('menu-open');document.body.style.overflow=''}
-toggle?.addEventListener('click',()=>{if(!menu.hidden){closeMenu();return}menu.hidden=false;toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Fechar menu');header.classList.add('menu-open');document.body.style.overflow='hidden'});
+function closeMenu(){if(!menu||!toggle)return;menu.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Abrir menu');toggle.querySelector('.nav-trigger-label').textContent='Menu';header.classList.remove('menu-open');document.body.classList.remove('nav-open')}
+toggle?.addEventListener('click',()=>{if(!menu.hidden){closeMenu();return}menu.hidden=false;toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Fechar menu');toggle.querySelector('.nav-trigger-label').textContent='Fechar';header.classList.add('menu-open');document.body.classList.add('nav-open')});
 menu?.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
 addEventListener('keydown',e=>{if(menu&&!menu.hidden){if(e.key==='Escape'){closeMenu();toggle.focus()}if(e.key==='Tab'){const controls=[toggle,...menu.querySelectorAll('a')];const first=controls[0],last=controls.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}}});
-addEventListener('resize',()=>{if(innerWidth>900&&!menu?.hidden)closeMenu()});
 document.getElementById('year')?.replaceChildren(String(new Date().getFullYear()));
 if(!motionPreference.matches&&'IntersectionObserver' in window){document.body.classList.add('motion-ready');const reveal=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');reveal.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>reveal.observe(el))}
 const hero=document.querySelector('.hero');
