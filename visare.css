@@ -82,3 +82,15 @@ h2 em,.strip-caption em,.project-contact h2 em{font-weight:300}
 .footer-main>p{font-weight:400;letter-spacing:-.01em}
 @media(max-width:600px){.hero-caption{font-size:clamp(25px,6.5vw,33px)}.section-title h2,.studio-copy h2,.services-title h2,.contact h2{line-height:1.06}}
 
+/* The pool render keeps its architecture still while the viewpoint, water and leaves move. */
+.depth-cover{perspective:1200px}
+.depth-orbit{position:absolute;inset:0;transform-style:preserve-3d;animation:sceneOrbit 14s ease-in-out infinite alternate;will-change:transform}
+.depth-scene{transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .25s ease}
+.depth-front{isolation:isolate}
+.scene-effects{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:hidden}
+.scene-effects .breeze-layer{animation:leavesSway 6.5s ease-in-out infinite alternate;transform-origin:50% 70%}
+@keyframes sceneOrbit{0%{transform:rotateX(3deg) rotateY(-8deg) scale(1.06)}50%{transform:rotateX(-2deg) rotateY(2deg) scale(1.055)}100%{transform:rotateX(2deg) rotateY(8deg) scale(1.06)}}
+@keyframes leavesSway{0%{transform:translate(-2px,1px) rotate(-.16deg)}100%{transform:translate(2px,-1px) rotate(.16deg)}}
+.depth-cover.offscreen .depth-orbit,.depth-cover.offscreen .depth-front,.depth-cover.offscreen .depth-light,.depth-cover.offscreen .breeze-layer{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.depth-orbit{animation:none!important;transform:none!important}.scene-effects{display:none}}
+
